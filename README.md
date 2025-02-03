@@ -12,10 +12,12 @@
 
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)
 
-### Frameworks && Libraries
+### Frameworks, Libraries & Runtimes
 
 - [.NET](https://dotnet.microsoft.com/en-us/)
+- [Docker](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [gRPC](https://grpc.io/)
+- [Kubernetes](https://kubernetes.io/)
 
 ### Databases
 
@@ -24,11 +26,10 @@
 ### Tools
 
 - [curl](https://curl.se/)
-- [Docker](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [k9s](https://github.com/derailed/k9s?ref=terminaltrove)
-- [Kubernetes](https://kubernetes.io/)
 - [Kubetui](https://github.com/sarub0b0/kubetui)
 - [Linux](https://archlinux.org/)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [Posting](https://github.com/darrenburns/posting)
 - [RabbitMQ](https://www.rabbitmq.com/)
+- [Swagger](https://swagger.io/why-swagger/)
