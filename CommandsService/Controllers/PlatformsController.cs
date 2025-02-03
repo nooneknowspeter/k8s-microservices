@@ -14,5 +14,13 @@ namespace CommandsService.Controllers
 
     }
 
+    [HttpPost]
+    public ActionResult TestInboundConnection()
+    {
+      Console.WriteLine("Inbound POST # Commands Service");
+
+      return Ok("Inbound Succesful");
+    }
+
   }
 }
