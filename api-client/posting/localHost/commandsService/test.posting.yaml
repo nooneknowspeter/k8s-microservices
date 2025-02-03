@@ -1,0 +1,3 @@
+name: test
+description: using default weather endpoint
+url: http://localhost:5108/weatherforecast
