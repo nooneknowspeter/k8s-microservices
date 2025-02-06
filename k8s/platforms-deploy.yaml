@@ -1,17 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platforms-depl
+  name: platforms-deploy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: platformservice
+      app: dotnet-platform-service
   template:
     metadata:
       labels:
-        app: platformservice
+        app: dotnet-platform-service
     spec:
       containers:
-        - name: platformservice
-          image: binarythistle/platformservice:latest
+        - name: dotnet-platform-service
+          image: peter6/dotnet-platform-service:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platforms-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: dotnet-platform-service
+  ports:
+    - name: dotnet-platform-service
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
