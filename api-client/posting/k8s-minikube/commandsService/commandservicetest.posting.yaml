@@ -1,0 +1,3 @@
+name: commandServiceTest
+method: POST
+url: http://localhost/api/commands/platforms

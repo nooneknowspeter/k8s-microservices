@@ -1,3 +1,0 @@
-name: createPlatform
-method: POST
-url: http://localhost:8080/api/platform
