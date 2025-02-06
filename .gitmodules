@@ -1,6 +1,6 @@
 [submodule "PlatformService"]
-	path = PlatformService
+	path = microservices/PlatformService
 	url = https://github.com/nooneknowspeter/dotnet-platforms-microservice.git
 [submodule "CommandsService"]
-	path = CommandsService
+	path = microservices/CommandsService
 	url = https://github.com/nooneknowspeter/dotnet-commands-microservice.git
