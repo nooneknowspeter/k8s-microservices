@@ -9,7 +9,7 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - Employed the API Gateway pattern for routing
 - Implemented synchronous messaging between services using HTTP and gRPC
 - Built asynchronous messaging between services using an Event Bus (RabbitMQ)
-- IaaC and scripting for automated deployment and portability
+- IaC and scripting for automated deployment and portability
 
 ## Technologies
 
