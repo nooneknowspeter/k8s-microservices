@@ -46,3 +46,9 @@ variable "aws_ami" {
   default     = "ami-0cb91c7de36eed2cb"
 }
 
+variable "aws_security_group_name" {
+  type        = string
+  description = "AWS Security Group Name"
+  default     = "allow_all_traffic"
+}
+
