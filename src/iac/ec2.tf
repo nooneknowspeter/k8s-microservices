@@ -5,5 +5,6 @@ resource "aws_instance" "this" {
   tags = {
     Name = var.aws_instance_name
   }
+  vpc_security_group_ids = [aws_security_group.this.id]
 }
 
