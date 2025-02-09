@@ -16,3 +16,9 @@ variable "aws_profile" {
   default     = "default"
 }
 
+variable "aws_config_location" {
+  type        = string
+  description = "AWS Config Location"
+  default     = "~/.aws/config"
+}
+
