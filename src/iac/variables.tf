@@ -22,3 +22,9 @@ variable "aws_config_location" {
   default     = "~/.aws/config"
 }
 
+variable "aws_credentials_location" {
+  type        = string
+  description = "AWS Credentials Location"
+  default     = "~/.aws/credentials"
+}
+
