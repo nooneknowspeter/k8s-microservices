@@ -4,3 +4,9 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "aws_availability_zone" {
+  type        = string
+  description = "AWS Availability Zone"
+  default     = "us-east-1a"
+}
+
