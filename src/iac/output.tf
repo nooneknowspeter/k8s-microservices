@@ -13,3 +13,8 @@ output "instance_private_ip" {
   description = "AWS Instance Private IP Address"
 }
 
+output "instance_puhlic_dns" {
+  value       = aws_instance.this.public_dns
+  description = "AWS Instance Public DNS"
+}
+
