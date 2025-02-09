@@ -35,8 +35,9 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [Swagger](https://swagger.io/why-swagger/)
 - [Terraform](https://www.terraform.io/)
 
-## Reference
+## References
 
-[S04E03---.NET-Microservices-Course-](https://github.com/binarythistle/S04E03---.NET-Microservices-Course-)
+- [S04E03---.NET-Microservices-Course-](https://github.com/binarythistle/S04E03---.NET-Microservices-Course-)
+- [scholzj/aws-minikube](https://github.com/scholzj/aws-minikube)
 
 ## Solutions Architecture & System Design
