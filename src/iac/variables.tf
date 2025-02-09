@@ -28,3 +28,9 @@ variable "aws_credentials_location" {
   default     = "~/.aws/credentials"
 }
 
+variable "aws_instance_name" {
+  type        = string
+  description = "AWS Instance Name"
+  default     = "this"
+}
+
