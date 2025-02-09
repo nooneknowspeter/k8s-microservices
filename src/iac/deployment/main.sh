@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # create working dir
 mkdir app && cd app || return # return null in case cd fails
