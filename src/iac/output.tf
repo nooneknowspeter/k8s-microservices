@@ -18,3 +18,8 @@ output "instance_puhlic_dns" {
   description = "AWS Instance Public DNS"
 }
 
+output "instance_user_data" {
+  value       = aws_instance.this.user_data
+  description = "AWS Instance User Data"
+}
+
