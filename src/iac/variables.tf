@@ -52,3 +52,8 @@ variable "aws_security_group_name" {
   default     = "allow_all_traffic"
 }
 
+variable "aws_ec2_key_name" {
+  type        = string
+  description = "AWS EC2 Instance Access Key Name"
+  default     = "access-key"
+}
