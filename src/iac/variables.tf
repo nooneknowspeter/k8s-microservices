@@ -34,3 +34,9 @@ variable "aws_instance_name" {
   default     = "this"
 }
 
+variable "aws_instance_type" {
+  type        = string
+  description = "AWS Instance Type | Default = t2.micro (Free Tier)"
+  default     = "t2.micro"
+}
+
