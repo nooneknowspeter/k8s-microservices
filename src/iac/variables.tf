@@ -10,3 +10,9 @@ variable "aws_availability_zone" {
   default     = "us-east-1a"
 }
 
+variable "aws_profile" {
+  type        = string
+  description = "AWS Profile"
+  default     = "default"
+}
+
