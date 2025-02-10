@@ -2,5 +2,8 @@
 
 echo -e "\n installing apache \n"
 
-sudo apt install apache2 -y
-sudo service apache2 start
+sudo yum install -y httpd
+
+sudo systemctl start httpd
+
+sudo systemctl enable httpd
