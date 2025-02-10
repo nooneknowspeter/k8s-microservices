@@ -13,6 +13,6 @@ resource "aws_instance" "this" {
   subnet_id = aws_subnet.this.id
 
   # initial setup of VM; install all dependencies 
-  user_data = file("./deployment/main.sh")
+  user_data = file("./deployment/user_data.sh")
 }
 
