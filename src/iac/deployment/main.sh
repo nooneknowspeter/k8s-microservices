@@ -46,7 +46,7 @@ git clone --recursive https://github.com/nooneknowspeter/k8s-microservices.git .
 cd src/iac/deployment
 
 # give all scripts executable permissions
-chmod +x ./*glob*
+chmod +x ./*.sh
 
 # install docker
 ./deployment/installation/docker.sh
