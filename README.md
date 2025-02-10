@@ -39,5 +39,6 @@ Built and deployed two .NET Microservices using the REST API pattern.
 
 - [S04E03---.NET-Microservices-Course-](https://github.com/binarythistle/S04E03---.NET-Microservices-Course-)
 - [scholzj/aws-minikube](https://github.com/scholzj/aws-minikube)
+- [cloud-formation-minikube](https://github.com/kobbikobb/cloud-formation-minikube)
 
 ## Solutions Architecture & System Design
