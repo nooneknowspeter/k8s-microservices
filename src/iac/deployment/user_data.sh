@@ -29,39 +29,20 @@ iptables -F
 mkdir app && cd app || return # return null in case cd fails
 
 # update and upgrade system
-sudo apt update && sudo apt upgrade -y
-sudo apt-get update && sudo apt-get upgrade -y
+sudo yum update -y
 
 # install ec2 instance connect
-sudo apt-get install ec2-instance-connect
+sudo yum install ec2-instance-connect -y
 
 # install git
 echo -e "\n installing git \n"
-sudo apt-get install git -y
+sudo yum install git -y
 
 # clone project repository
 git clone --recursive https://github.com/nooneknowspeter/k8s-microservices.git .
 
 # cd into src folder
-cd src/iac/deployment
+cd src/iac/deployment || return
 
 # give all scripts executable permissions
 chmod +x ./*.sh
-
-# install docker
-./installation/docker.sh
-
-# install kubernetes
-./installation/kubernetes.sh
-
-# install minikube
-./installation/minikube.sh
-
-# install apache
-./installation/apache.sh
-
-# kubectl manifests
-./configurations/k8s.sh
-
-# reverse proxy minikube ip address
-./configurations/httpd_reverse_proxy.sh
