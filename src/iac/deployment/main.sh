@@ -42,6 +42,9 @@ sudo apt-get install git -y
 # clone project repository
 git clone --recursive https://github.com/nooneknowspeter/k8s-microservices.git .
 
+# cd into src folder
+cd src/iac/deployment
+
 # give all scripts executable permissions
 chmod +x ./*glob*
 
