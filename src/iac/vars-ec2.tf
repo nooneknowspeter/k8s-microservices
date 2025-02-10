@@ -6,12 +6,12 @@ variable "aws_instance_name" {
 
 variable "aws_instance_type" {
   type        = string
-  description = "AWS Instance Type | Default = t2.micro (Free Tier)"
-  default     = "t2.micro"
+  description = "AWS Instance Type | Default = t2.medium, Min 2 CPU Cores)"
+  default     = "t2.medium"
 }
 
 variable "aws_ami" {
   type        = string
-  description = "AWS AMI | Default = Ubuntu 24.04 LTS (Free Tier)"
-  default     = "ami-0cb91c7de36eed2cb"
+  description = "AWS AMI | Default = Amazon Linux 2023 AMI (Free Tier)"
+  default     = "ami-088b41ffb0933423f"
 }
