@@ -3,6 +3,11 @@ output "instance_id" {
   description = "AWS Instance ID"
 }
 
+output "instance_type" {
+  value       = aws_instance.this.instance_type
+  description = "AWS Instance Type"
+}
+
 output "instance_public_ip" {
   value       = aws_instance.this.public_ip
   description = "AWS Instance Public IP Address"
@@ -13,7 +18,7 @@ output "instance_private_ip" {
   description = "AWS Instance Private IP Address"
 }
 
-output "instance_puhlic_dns" {
+output "instance_public_dns" {
   value       = aws_instance.this.public_dns
   description = "AWS Instance Public DNS"
 }
