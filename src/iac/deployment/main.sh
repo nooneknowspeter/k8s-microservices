@@ -49,19 +49,19 @@ cd src/iac/deployment
 chmod +x ./*.sh
 
 # install docker
-./deployment/installation/docker.sh
+./installation/docker.sh
 
 # install kubernetes
-./deployment/installation/kubernetes.sh
+./installation/kubernetes.sh
 
 # install minikube
-./deployment/installation/minikube.sh
+./installation/minikube.sh
 
 # install apache
-./deployment/installation/apache.sh
+./installation/apache.sh
 
 # kubectl manifests
-./deployment/configurations/k8s.sh
+./configurations/k8s.sh
 
 # reverse proxy minikube ip address
-./deployment/configurations/httpd_reverse_proxy.sh
+./configurations/httpd_reverse_proxy.sh
