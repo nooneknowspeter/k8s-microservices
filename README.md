@@ -14,7 +14,6 @@ Built and deployed two .NET Microservices using the REST API pattern.
 ## Technologies
 
 - [.NET](https://dotnet.microsoft.com/en-us/)
-- [Apache](https://www.apache.org/)
 - [AWS](https://aws.amazon.com/)
 - [C#](https://learn.microsoft.com/en-us/dotnet/csharp/)
 - [curl](https://curl.se/)
