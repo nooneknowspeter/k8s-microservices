@@ -12,8 +12,8 @@
 # install apache
 ./installation/apache.sh
 
+# reverse proxy minikube ip address
+./configurations/reverse_proxy.sh
+
 # kubectl manifests
 ./configurations/k8s.sh
-
-# reverse proxy minikube ip address
-./configurations/httpd_reverse_proxy.sh
