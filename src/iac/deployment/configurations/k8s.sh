@@ -20,7 +20,7 @@ kubectl port-forward service/platform-node-port-service 8080:8080
 minikube addons enable ingress
 
 # delete ingress admission pod
-kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+kubectl delete -all-namespaces validatingwebhookconfiguration ingress-nginx-admission
 
 # create ingress from configuration
 kubectl create -f ./../manifests/ingress-service.yaml
