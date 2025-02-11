@@ -1,19 +1,25 @@
 #!/usr/bin/env bash
 
+# cd into installation folder
+cd ./installation/ || return
+
 # install docker
-./installation/docker.sh
+./docker.sh
 
 # install kubernetes
-./installation/kubernetes.sh
+./kubernetes.sh
 
 # install minikube
-./installation/minikube.sh
+./minikube.sh
 
 # install apache
-./installation/apache.sh
+./apache.sh
+
+# cd into configurations folder
+cd ./../configurations || return
 
 # reverse proxy minikube ip address
-./configurations/reverse_proxy.sh
+./reverse_proxy.sh
 
 # kubectl manifests
-./configurations/k8s.sh
+./k8s.sh
