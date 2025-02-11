@@ -49,3 +49,6 @@ cd src/iac/deployment || return
 
 # give all scripts executable permissions
 chmod +x ./*.sh
+chmod +x ./installation/*.sh
+chmod +x ./configurations/*.sh
+
