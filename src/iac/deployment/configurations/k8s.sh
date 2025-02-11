@@ -13,7 +13,7 @@ kubectl apply -f ./../manifests/platforms-node-port-service.yaml
 
 # forward port on host to node port
 # node port maps to platform service cluster ip and port
-kubectl port-forward service/platform-node-port-service 8080:8080
+# kubectl port-forward service/platform-node-port-service 8080:8080
 
 # nginx ingress controller
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml
