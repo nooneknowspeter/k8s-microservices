@@ -34,6 +34,9 @@ sudo yum update -y
 # install ec2 instance connect
 sudo yum install ec2-instance-connect -y
 
+# install and start tmux
+sudo yum install tmux -y
+
 # install git
 echo -e "\n installing git \n"
 sudo yum install git -y
