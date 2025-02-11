@@ -20,7 +20,7 @@ kubectl apply -f ./../manifests/platforms-node-port-service.yaml
 minikube addons enable ingress
 
 # delete ingress admission pod
-kubectl delete -all-namespaces validatingwebhookconfiguration ingress-nginx-admission
+kubectl delete --all-namespaces validatingwebhookconfiguration ingress-nginx-admission
 
 # create ingress from configuration
 kubectl create -f ./../manifests/ingress-service.yaml
