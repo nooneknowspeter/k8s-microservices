@@ -52,3 +52,5 @@ chmod +x ./*.sh
 chmod +x ./installation/*.sh
 chmod +x ./configurations/*.sh
 
+# setup and configure server
+./setup.sh
