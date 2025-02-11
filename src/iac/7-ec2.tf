@@ -8,7 +8,7 @@ resource "aws_instance" "this" {
     Name = var.aws_instance_name
   }
 
-  vpc_security_group_ids = ["${aws_security_group.this.id}"]
+  vpc_security_group_ids = ["aws_security_group.this.id"]
 
   subnet_id = aws_subnet.this.id
 
