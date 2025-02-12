@@ -18,13 +18,14 @@ cd ./installation/ || return
 # cd into configurations folder
 cd ./../configurations || return
 
+# minikube init and kubectl manifests
+./k8s.sh
+
 # reverse proxy minikube ip address
 ./reverse_proxy.sh
 
 # edit hosts files
 ./hosts.sh
 
-# kubectl manifests
-./k8s.sh
 # expose kubernetes cluser through load balancer and reverse proxy
 minikube tunnel
