@@ -1,0 +1,23 @@
+aws_instance_name = "name-of-ec2-instance"
+
+aws_region = "region; us-east-1 || us-east-2 ..."
+
+aws_ami = "ami-image; ami-088b41ffb0933423f => Amazon Linux 2023"
+
+aws_availability_zone = "availability_zone; us-east-2a ..."
+
+aws_security_group_name = "security-group-name; allow_all_traffic"
+
+aws_user_data = "path-to-script or embed directly; ./deployment/user_data.sh ||
+<<-EOT
+
+#!/usr/bin/env bash
+
+echo "something like this"
+
+EOT
+"
+
+aws_key_name = "ssh-key-pair-name; aws_ssh"
+
+aws_ssh_key_type = "RSA || ECDSA ..."
