@@ -4,8 +4,19 @@ variable "aws_profile" {
   default     = "default"
 }
 
+variable "aws_key_name" {
+  type        = string
+  description = "AWS Key Pair Name"
+}
+
 variable "aws_public_key" {
   type        = string
-  description = "AWS Public Key Pair"
+  description = "SSH Public Key"
+}
+
+variable "aws_ssh_key_type" {
+  type        = string
+  description = "SSH Key Type"
+  default     = "RSA"
 }
 
