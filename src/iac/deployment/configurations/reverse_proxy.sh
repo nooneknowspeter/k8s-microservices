@@ -2,7 +2,7 @@
 
 echo -e "\n reverse proxy with apache httpd \n"
 
-PROXY_TO="localhost"
+PROXY_TO="host.this"
 
 sudo /bin/su -c "echo '
 ProxyPass / http://$PROXY_TO/ 
