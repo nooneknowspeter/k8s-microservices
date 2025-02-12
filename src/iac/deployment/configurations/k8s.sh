@@ -24,6 +24,3 @@ kubectl delete --all-namespaces validatingwebhookconfiguration ingress-nginx-adm
 
 # create ingress from configuration
 kubectl create -f ./../manifests/ingress-service.yaml
-
-# expose kubernetes cluser through load balancer and reverse proxy
-minikube tunnel

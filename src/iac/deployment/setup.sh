@@ -26,3 +26,5 @@ cd ./../configurations || return
 
 # kubectl manifests
 ./k8s.sh
+# expose kubernetes cluser through load balancer and reverse proxy
+minikube tunnel
