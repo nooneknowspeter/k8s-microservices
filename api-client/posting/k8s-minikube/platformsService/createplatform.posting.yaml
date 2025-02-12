@@ -1,6 +1,6 @@
 name: createPlatform
 method: POST
-url: http://localhost/api/platforms
+url: http://host.this/api/platforms
 body:
   content: |-
     {
