@@ -21,5 +21,8 @@ cd ./../configurations || return
 # reverse proxy minikube ip address
 ./reverse_proxy.sh
 
+# edit hosts files
+./hosts.sh
+
 # kubectl manifests
 ./k8s.sh
