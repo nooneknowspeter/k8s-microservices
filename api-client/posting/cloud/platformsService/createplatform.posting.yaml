@@ -1,6 +1,6 @@
 name: createPlatform
 method: POST
-url: http://localhost/api/platforms
+url: http://3.14.249.102/api/platforms
 body:
   content: |-
     {
@@ -10,5 +10,5 @@ body:
     }
   content_type: application/json
 headers:
-  - name: content-type
-    value: application/json
+- name: content-type
+  value: application/json
