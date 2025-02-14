@@ -42,3 +42,87 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [cloud-formation-minikube](https://github.com/kobbikobb/cloud-formation-minikube)
 
 ## Solutions Architecture & Systems Design
+
+### Solutions Architecture (Single System)
+
+<div align=center>
+
+```mermaid
+---
+# title: Overview of Solutions Architecture (Single System)
+config:
+    theme: neutral
+---
+
+graph TD;
+internet((( Internet )))
+
+internet <--> hardware
+
+subgraph hardware[ Hardware ]
+    subgraph system[ Operating System ]
+        configurations( Configuration Files && Manifests)
+        monitoring( Resource Monitoring )
+        project( Root Project )
+        subgraph runtime[ Docker ]
+            subgraph minikube[ Minkube ]
+                subgraph cluster[ Cluster ]
+                    direction BT;
+
+                    subgraph node[ Node ]
+                        %% commands service
+                        subgraph commandsPod[ Pod ]
+                            commandsServiceContainer( Commands Service Container)
+                        end
+
+                        commandsPod <--8080--> commandsClusterIPService
+                        commandsPod <--666--> commandsClusterIPService
+
+                        subgraph commandsClusterIPService[ Cluster IP ]
+                            commandsClusterIP( Commands Service Cluster IP )
+                        end
+
+                        %% platforms service
+                        subgraph platformsPod[ Pod ]
+                            platformsServiceContainer( Platforms Service Container)
+                        end
+
+                        platformsPod <--8080--> platformsClusterIPService
+                        platformsPod <--666--> platformsClusterIPService
+
+                        subgraph platformsClusterIPService[ Cluster IP ]
+                            platformsClusterIP( Platforms Service Cluster IP )
+                        end
+
+                        %% nginx
+                        subgraph nginxPod[ Pod ]
+                            nginxContainer( Nginx Container)
+                        end
+
+
+                        %% node port
+                        nodePort( Node Port )
+
+
+                        %% ingress controller
+                        ingressController( Ingress Nginx Load Balancer )
+
+                        %% connections
+                        commandsServiceContainer <--8080--> nodePort
+
+                        nginxContainer <--80--> ingressController
+
+                        nginxContainer <--8080--> platformsServiceContainer
+
+                        nginxContainer <--8080--> commandsServiceContainer
+
+                        platformsClusterIPService <--Asynchronous--> commandsClusterIPService
+
+                    end
+                end
+            end
+        end
+    end
+end
+```
+
