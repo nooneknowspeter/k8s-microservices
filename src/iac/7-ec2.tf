@@ -15,7 +15,7 @@ resource "aws_instance" "this" {
   key_name = aws_key_pair.this.key_name
 
   # initial setup of VM; install all dependencies 
-  user_data                   = file(var.aws_user_data)
+  user_data                   = file("./user_data.tpl")
   user_data_replace_on_change = true
 }
 
