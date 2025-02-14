@@ -126,3 +126,83 @@ subgraph hardware[ Hardware ]
 end
 ```
 
+</div>
+
+### AWS Cloud Architecture
+
+<div align=center>
+
+```mermaid
+---
+# title: Overview of Cloud Infrastructure
+config:
+    theme: neutral
+---
+
+graph TD;
+    %% styles
+    style user fill:#c46699,stroke:#333,stroke-width:4px
+    style dev fill:#415999,stroke:#333,stroke-width:4px
+
+    user( User )
+
+    dev( Developer / Engineer )
+
+    internet(((  Internet  )))
+
+    domain80( Domain / Public IP Address:80 )
+
+    domain22( Domain / IP Address:22 )
+
+    %% internet connecting to vpc through gateway
+    internet <--> internetGateway
+
+    internetGateway --> routeTable
+
+    %% user connecting to application running in ec2 instance
+    user --> domain80
+
+    domain80 --> internet
+
+    %% developer connecting to ec2 instance through ssh
+    dev --> domain22
+
+    domain22 --> internet
+
+    %% AWS cloud infrastructure
+    subgraph vpc[ Virtual  Private Cloud]
+        internetGateway(( Internet Gateway ))
+
+        routeTable( Route Table \n 0.0.0.0/0 )
+
+        allPorts --> internetGateway
+
+        %% firewall redirecting traffic to their appropriate ports
+        routeTable -- Domain / IP Address:22 --> port22
+        routeTable -- Domain / IP Address:80 --> port80
+
+        subgraph subnet[ Subnet ]
+            subgraph firewall[ Security Group ]
+                %% ingress ports
+                port22( Port 22 TCP )
+                port80( Port 80 TCP )
+
+                %% egress ports
+                allPorts( Port 0 -1 )
+
+                port22 -- SSH Authentication --> ec2
+
+                port80 --> application
+
+                ec2 --> allPorts
+
+
+                subgraph ec2[ EC2 Instance ]
+                    application( Application )
+                end
+           end
+        end
+    end
+```
+
+</div>
