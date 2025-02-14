@@ -41,4 +41,4 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [scholzj/aws-minikube](https://github.com/scholzj/aws-minikube)
 - [cloud-formation-minikube](https://github.com/kobbikobb/cloud-formation-minikube)
 
-## Solutions Architecture & System Design
+## Solutions Architecture & Systems Design
