@@ -10,6 +10,7 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - Implemented synchronous messaging between services using HTTP and gRPC
 - Built asynchronous messaging between services using an Event Bus (RabbitMQ)
 - IaC and scripting for automated deployment and portability
+- Cloud architecture and deployment on infrastructure
 
 ## Technologies
 
@@ -45,98 +46,161 @@ Built and deployed two .NET Microservices using the REST API pattern.
 
 ## Solutions Architecture & Systems Design
 
-### Solutions Architecture (Single System)
+### Cluster Architecture
+
+Diagram Illustrating Cluster Architecture of Microservices Deployments and Service Configurations
 
 <div align=center>
 
 ```mermaid
 ---
-# title: Overview of Solutions Architecture (Single System)
+<!-- title: Diagram Illustrating Cluster Architecture of Microservices Deployments and Service Configurations -->
 config:
     theme: neutral
 ---
 
-graph TD;
-internet((( Internet )))
+graph LR;
+    %% network interface
+    networkInterface( Network Interface )
+    networkInterface <--80--> ingressController
+    networkInterface <--8080--> nodePort
 
-internet <--> hardware
+    %% minikube cluster
+    subgraph cluster[ Cluster ]
+        direction BT;
 
-subgraph hardware[ Hardware ]
-    subgraph system[ Operating System ]
-        configurations( Configuration Files && Manifests)
-        monitoring( Resource Monitoring )
-        project( Root Project )
-        subgraph runtime[ Docker ]
-            subgraph minikube[ Minkube ]
-                subgraph cluster[ Cluster ]
-                    direction BT;
+        subgraph node[ Node ]
+            %% commands service
+            subgraph commandsPod[ Pod ]
+                commandsServiceContainer( Commands Service Container)
+            end
 
-                    subgraph node[ Node ]
-                        %% commands service
-                        subgraph commandsPod[ Pod ]
-                            commandsServiceContainer( Commands Service Container)
-                        end
+            commandsPod <--8080--> commandsClusterIPService
+            commandsPod <--666--> commandsClusterIPService
 
-                        commandsPod <--8080--> commandsClusterIPService
-                        commandsPod <--666--> commandsClusterIPService
+            subgraph commandsClusterIPService[ Cluster IP ]
+                commandsClusterIP( Commands Service Cluster IP )
+            end
 
-                        subgraph commandsClusterIPService[ Cluster IP ]
-                            commandsClusterIP( Commands Service Cluster IP )
-                        end
+            %% platforms service
+            subgraph platformsPod[ Pod ]
+                platformsServiceContainer( Platforms Service Container)
+            end
 
-                        %% platforms service
-                        subgraph platformsPod[ Pod ]
-                            platformsServiceContainer( Platforms Service Container)
-                        end
+            platformsPod <--8080--> platformsClusterIPService
+            platformsPod <--666--> platformsClusterIPService
 
-                        platformsPod <--8080--> platformsClusterIPService
-                        platformsPod <--666--> platformsClusterIPService
+            subgraph platformsClusterIPService[ Cluster IP ]
+                platformsClusterIP( Platforms Service Cluster IP )
+            end
 
-                        subgraph platformsClusterIPService[ Cluster IP ]
-                            platformsClusterIP( Platforms Service Cluster IP )
-                        end
-
-                        %% nginx
-                        subgraph nginxPod[ Pod ]
-                            nginxContainer( Nginx Container)
-                        end
+            %% nginx
+            subgraph nginxPod[ Pod ]
+                nginxContainer( Nginx Container)
+            end
 
 
-                        %% node port
-                        nodePort( Node Port )
+            %% node port
+            nodePort( Node Port )
 
 
-                        %% ingress controller
-                        ingressController( Ingress Nginx Load Balancer )
+            %% ingress controller
+            ingressController( Ingress Nginx Load Balancer )
 
-                        %% connections
-                        commandsServiceContainer <--8080--> nodePort
+            %% connections
+            commandsServiceContainer <--8080--> nodePort
+            nginxContainer <--80--> ingressController
+            nginxContainer <--8080--> platformsServiceContainer
+            nginxContainer <--8080--> commandsServiceContainer
+            platformsClusterIPService <--Asynchronous \n 80--> commandsClusterIPService
 
-                        nginxContainer <--80--> ingressController
+        end
+    end
+```
 
-                        nginxContainer <--8080--> platformsServiceContainer
+</div>
 
-                        nginxContainer <--8080--> commandsServiceContainer
+### Solutions Architecture (Single System)
 
-                        platformsClusterIPService <--Asynchronous--> commandsClusterIPService
+Diagram Illustrating A Single System Kubernetes Services Architecture
 
+<div align=center>
+
+```mermaid
+---
+<!-- title: Diagram Illustrating A Single System Kubernetes Services Architecture -->
+config:
+    theme: neutral
+---
+
+graph TB;
+    %% network hardware
+    internet((( Internet )))
+    gateway(( Gateway ))
+
+    %% connections
+    reverseProxy <--80--> networkInterface
+    networkInterface <--> firewall
+    firewall <--> gateway
+    gateway <--> internet
+    apiClient <--8080--> networkInterface <--8080--> nodePort
+    ingressController <--80--> reverseProxy
+
+    %% hardware
+    subgraph hardware[ Hardware ]
+        firewall( Firewall \n TCP 80 \n TCP 22)
+
+        networkInterface( Network Interface )
+
+        subgraph system[ Operating System ]
+            %% apache httpd proxy
+            reverseProxy( HTTPD Reverse Proxy )
+
+            %% development environment
+            subgraph devEnv[ Development Environment ]
+                configurations( Configuration Files && Manifests)
+                monitoring( Resource Monitoring )
+                project( Root Project )
+                apiClient( API Client )
+            end
+
+            %% docker
+            subgraph runtime[ Docker ]
+                %% minikube container
+                subgraph minikube[ Minkube ]
+                    %% minikube cluster
+                    subgraph cluster[ Cluster ]
+                        direction BT;
+                            %% cluster diagram
+                            diagram(Services \n View Cluster Diagram)
+
+                            %% node port
+                            nodePort( Node Port )
+
+                            %% ingress controller
+                            ingressController( Ingress Nginx Load Balancer )
+
+                            %% cluster diagram
+                            nodePort <--> diagram
+                            ingressController <--> diagram
                     end
                 end
             end
         end
     end
-end
 ```
 
 </div>
 
 ### AWS Cloud Architecture
 
+Diagram Illustrating AWS Cloud Architecture of Single System Kubernetes Deployment
+
 <div align=center>
 
 ```mermaid
 ---
-# title: Overview of Cloud Infrastructure
+<!-- title: Diagram Illustrating AWS Cloud Architecture of Single System Kubernetes Deployment -->
 config:
     theme: neutral
 ---
@@ -194,13 +258,12 @@ graph TD;
 
                 port22 -- SSH Authentication --> ec2
 
-                port80 --> application
+                port80 --> ec2
 
                 ec2 --> allPorts
 
 
-                subgraph ec2[ EC2 Instance ]
-                    application( Application )
+                subgraph ec2[ EC2 Instance \n View Cluster Diagram ]
                 end
            end
         end
