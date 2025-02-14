@@ -25,7 +25,9 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [Kubetui](https://github.com/sarub0b0/kubetui)
 - [Lazydocker](https://github.com/jesseduffield/lazydocker)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
-- [Linux](https://archlinux.org/) => Arch (development) & Ubuntu (production)
+- Linux
+  - [Arch => Development](https://archlinux.org/)
+  - [Amazon Linux => Production](https://aws.amazon.com/amazon-linux-2/?amazon-linux-whats-new.sort-by=item.additionalFields.postDateTime&amazon-linux-whats-new.sort-order=desc)
 - [localtunnel](https://theboroer.github.io/localtunnel-www/)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
