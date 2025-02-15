@@ -43,10 +43,11 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [S04E03---.NET-Microservices-Course-](https://github.com/binarythistle/S04E03---.NET-Microservices-Course-)
 - [scholzj/aws-minikube](https://github.com/scholzj/aws-minikube)
 - [cloud-formation-minikube](https://github.com/kobbikobb/cloud-formation-minikube)
+- [Microsoft SQL Workshop](https://github.com/microsoft/sqlworkshops-sql2019workshop/blob/master/sql2019workshop/07_SQLOnKubernetes.md)
 
 ## Solutions Architecture & Systems Design
 
-### Cluster Architecture
+### Cluster Architecture (Single Node)
 
 Diagram Illustrating Cluster Architecture of Microservices Deployments and Service Configurations
 
@@ -59,11 +60,15 @@ config:
     theme: neutral
 ---
 
-graph LR;
+graph TD;
     %% network interface
     networkInterface( Network Interface )
     networkInterface <--80--> ingressController
     networkInterface <--8080--> nodePort
+
+    %% storage
+    storage( Physical Storage )
+    mssqlPersistentVolumeClaim <--> storage
 
     %% minikube cluster
     subgraph cluster[ Cluster ]
@@ -75,30 +80,39 @@ graph LR;
                 commandsServiceContainer( Commands Service Container)
             end
 
-            commandsPod <--8080--> commandsClusterIPService
-            commandsPod <--666--> commandsClusterIPService
+            commandsPod <--8080--> commandsClusterIP
+            commandsPod <--666--> commandsClusterIP
 
-            subgraph commandsClusterIPService[ Cluster IP ]
-                commandsClusterIP( Commands Service Cluster IP )
-            end
+            commandsClusterIP( Cluster IP \n Commands Service Cluster IP )
 
             %% platforms service
             subgraph platformsPod[ Pod ]
                 platformsServiceContainer( Platforms Service Container)
             end
 
-            platformsPod <--8080--> platformsClusterIPService
-            platformsPod <--666--> platformsClusterIPService
+            platformsPod <--8080--> platformsClusterIP
+            platformsPod <--666--> platformsClusterIP
 
-            subgraph platformsClusterIPService[ Cluster IP ]
-                platformsClusterIP( Platforms Service Cluster IP )
-            end
+            platformsClusterIP( Cluster IP \n Platforms Service Cluster IP )
 
             %% nginx
             subgraph nginxPod[ Pod ]
                 nginxContainer( Nginx Container)
             end
 
+            %% persistent volume Claim
+            mssqlPersistentVolumeClaim(Persistent Volume Claim)
+            mssqlPersistentVolumeClaim <--> mssqlContainer
+
+            %% mssql server
+            subgraph mssqlPod[ Pod ]
+                mssqlContainer( Microsoft SQL Server Container)
+            end
+
+            mssqlPod <--1433--> mssqlClusterIP
+            mssqlClusterIP <--> platformsClusterIP
+
+            mssqlClusterIP( Cluster IP \n Microsoft SQL Server Service Cluster IP )
 
             %% node port
             nodePort( Node Port )
@@ -112,7 +126,7 @@ graph LR;
             nginxContainer <--80--> ingressController
             nginxContainer <--8080--> platformsServiceContainer
             nginxContainer <--8080--> commandsServiceContainer
-            platformsClusterIPService <--Asynchronous \n 80--> commandsClusterIPService
+            platformsClusterIP <--Asynchronous--> commandsClusterIP
 
         end
     end
