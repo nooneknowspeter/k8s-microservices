@@ -3,6 +3,8 @@
 # cd into installation folder
 cd ./installation/ || return
 
+pwd
+
 # install docker
 ./docker.sh
 
@@ -17,6 +19,8 @@ cd ./installation/ || return
 
 # cd into configurations folder
 cd ./../configurations || return
+
+pwd
 
 # minikube init and kubectl manifests
 ./k8s.sh

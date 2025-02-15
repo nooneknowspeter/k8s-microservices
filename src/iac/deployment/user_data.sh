@@ -7,6 +7,8 @@ iptables -F
 # create working dir
 mkdir app && cd app || return # return null in case cd fails
 
+pwd
+
 # update and upgrade system
 sudo yum update -y
 
@@ -25,6 +27,8 @@ git clone --recursive https://github.com/nooneknowspeter/k8s-microservices.git .
 
 # cd into src folder
 cd src/iac/deployment || return
+
+pwd
 
 # give all scripts executable permissions
 chmod +x ./*.sh
