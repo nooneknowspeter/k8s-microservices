@@ -18,6 +18,8 @@ kubectl apply -f ./platforms-node-port-service.yaml
 # persistent volume claim
 kubectl apply -f ./local-persistent-volume-claim.yaml
 
+kubectl create secret generic mssql-secret --from-literal=SA_PASSWORD="@Pa55word"
+
 # forward port on host to node port
 # node port maps to platform service cluster ip and port
 # kubectl port-forward service/platform-node-port-service 8080:8080
