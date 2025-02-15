@@ -1,3 +1,4 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +17,7 @@ spec:
         - name: dotnet-platform-service
           image: peter6/dotnet-platform-service:latest
 ---
+# https://kubernetes.io/docs/concepts/services-networking/service/
 apiVersion: v1
 kind: Service
 metadata:
@@ -29,3 +31,4 @@ spec:
       protocol: TCP
       port: 8080
       targetPort: 8080
+
