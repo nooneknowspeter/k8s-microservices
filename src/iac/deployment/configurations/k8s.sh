@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
+cd ./../manifests/ || return
+
+pwd
+
 # start minikube
 minikube start
 
 # kubectl apply configurations
 # apply deployments
-kubectl apply -f ./../manifests/platforms-deploy.yaml
-kubectl apply -f ./../manifests/commands-deploy.yaml
+kubectl apply -f ./platforms-deploy.yaml
+kubectl apply -f ./commands-deploy.yaml
 
 # node port to platforms service
-kubectl apply -f ./../manifests/platforms-node-port-service.yaml
+kubectl apply -f ./platforms-node-port-service.yaml
 
 # forward port on host to node port
 # node port maps to platform service cluster ip and port
@@ -23,4 +27,8 @@ minikube addons enable ingress
 kubectl delete --all-namespaces validatingwebhookconfiguration ingress-nginx-admission
 
 # create ingress from configuration
-kubectl create -f ./../manifests/ingress-service.yaml
+kubectl create -f ./ingress-service.yaml
+
+cd ./../configurations/ || return
+
+pwd
