@@ -15,6 +15,9 @@ kubectl apply -f ./commands-deploy.yaml
 # node port to platforms service
 kubectl apply -f ./platforms-node-port-service.yaml
 
+# persistent volume claim
+kubectl apply -f ./local-persistent-volume-claim.yaml
+
 # forward port on host to node port
 # node port maps to platform service cluster ip and port
 # kubectl port-forward service/platform-node-port-service 8080:8080
