@@ -22,10 +22,6 @@ kubectl create secret generic mssql-secret --from-literal=SA_PASSWORD="@Pa55word
 
 kubectl apply -f ./mssql-platform-deploy.yaml
 
-# forward port on host to node port
-# node port maps to platform service cluster ip and port
-# kubectl port-forward service/platform-node-port-service 8080:8080
-
 # nginx ingress controller
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml
 minikube addons enable ingress
@@ -35,6 +31,10 @@ kubectl delete --all-namespaces validatingwebhookconfiguration ingress-nginx-adm
 
 # create ingress from configuration
 kubectl create -f ./ingress-service.yaml
+
+# forward ports to services in detached state
+kubectl port-forward service/platform-node-port-service 8080:8080 &
+kubectl port-forward service/mssql-loadbalancer 1433:1433 &
 
 cd ./../configurations/ || return
 
