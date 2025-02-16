@@ -4,6 +4,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mssql-deployment
+  annotations:
+    secret.reloader.stakater.com/reload: "mssql-secret"
 spec:
   replicas: 1
   selector:
