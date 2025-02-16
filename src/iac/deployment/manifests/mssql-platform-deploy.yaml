@@ -28,7 +28,7 @@ spec:
           runAsUser: 0
         env:
         - name: MSSQL_PID
-          value: "Developer"
+          value: "Express"
         - name: ACCEPT_EULA
           value: "Y"
         - name: MSSQL_SA_PASSWORD
