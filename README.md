@@ -27,8 +27,9 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [Lazydocker](https://github.com/jesseduffield/lazydocker)
 - [Lazygit](https://github.com/jesseduffield/lazygit)
 - Linux
-  - [Arch => Development](https://archlinux.org/)
   - [Amazon Linux => Production](https://aws.amazon.com/amazon-linux-2/?amazon-linux-whats-new.sort-by=item.additionalFields.postDateTime&amazon-linux-whats-new.sort-order=desc)
+  - [Arch => Development](https://archlinux.org/)
+  - [Kali](https://www.kali.org/) => Sniffing and Vulnerability Analysis
 - [localtunnel](https://theboroer.github.io/localtunnel-www/)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
@@ -36,6 +37,9 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [Posting](https://github.com/darrenburns/posting)
 - [RabbitMQ](https://www.rabbitmq.com/)
 - [Swagger](https://swagger.io/why-swagger/)
+- Shell
+  - Bash
+  - Zsh
 - [Terraform](https://www.terraform.io/)
 
 ## References
