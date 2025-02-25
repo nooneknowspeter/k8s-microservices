@@ -1,0 +1,13 @@
+name: createCommandForPlatform
+method: POST
+url: http://localhost:5108/api/commands/platforms/1/commands
+body:
+  content: |-
+    {
+      "HowTo": "Building a .NET project",
+      "CommandLine": "dotnet build"
+    }
+  content_type: application/json
+headers:
+- name: content-type
+  value: application/json

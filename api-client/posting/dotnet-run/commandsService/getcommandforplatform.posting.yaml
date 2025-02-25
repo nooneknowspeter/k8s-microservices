@@ -1,0 +1,2 @@
+name: getCommandForPlatform
+url: http://localhost:5108/api/commands/platforms/1/commands/3
