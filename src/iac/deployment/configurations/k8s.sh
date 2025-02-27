@@ -18,9 +18,14 @@ kubectl apply -f ./platforms-node-port-service.yaml
 # persistent volume claim
 kubectl apply -f ./local-persistent-volume-claim.yaml
 
+# create default secret for database
 kubectl create secret generic mssql-secret --from-literal=SA_PASSWORD="@Pa55word"
 
+# kubectl apply database configuration
 kubectl apply -f ./mssql-platform-deploy.yaml
+
+# kubectl apply rabbitmq configuration
+kubectl apply -f ./rabbitmq-deploy.yaml
 
 # nginx ingress controller
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml
@@ -35,6 +40,7 @@ kubectl create -f ./ingress-service.yaml
 # forward ports to services in detached state
 kubectl port-forward service/platform-node-port-service 8080:8080 &
 kubectl port-forward service/mssql-loadbalancer 1433:1433 &
+kubectl port-forward service/rabbitmq-loadbalancer 15672:15672 &
 
 cd ./../configurations/ || return
 
