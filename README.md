@@ -49,7 +49,51 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - [cloud-formation-minikube](https://github.com/kobbikobb/cloud-formation-minikube)
 - [Microsoft SQL Workshop](https://github.com/microsoft/sqlworkshops-sql2019workshop/blob/master/sql2019workshop/07_SQLOnKubernetes.md)
 
-## Solutions Architecture & Systems Design
+## Systems Design
+
+### Microservices Architecture
+
+Digram Illustrating Microservices Architecture and Communication
+
+```mermaid
+---
+# title: Digram Illustrating Microservices Architecture and Communication
+config:
+    theme: neutral
+---
+
+graph LR;
+    subgraph microServices[  ]
+        direction LR;
+        gateway( API Gateway )
+
+        %% connections
+        gateway <--> platformRestAPI
+        gateway <--> commandsRestAPI
+        platformService <--HTTP--> commandsRestAPI
+        platformService --Publish--> messageBus
+        messageBus --Subscribe--> commandsService
+
+        subgraph platform[  ]
+            subgraph platformService[ Platform Service ]
+                platformRestAPI( REST API )
+            end
+
+            platformDb[( SQL Server )]
+        end
+
+        subgraph messageBus[ RabbitMQ Message Bus ]
+        end
+
+        subgraph commands[  ]
+            subgraph commandsService[ Commands Service ]
+                commandsRestAPI( REST API )
+            end
+
+            commandsDb[( RAM )]
+        end
+    end
+```
 
 ### Cluster Architecture (Single Node)
 
@@ -138,7 +182,7 @@ graph TD;
 
 </div>
 
-### Solutions Architecture (Single System)
+### System Architecture (Single System)
 
 Diagram Illustrating A Single System Kubernetes Services Architecture
 
