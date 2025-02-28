@@ -29,7 +29,7 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - Linux
   - [Amazon Linux => Production](https://aws.amazon.com/amazon-linux-2/?amazon-linux-whats-new.sort-by=item.additionalFields.postDateTime&amazon-linux-whats-new.sort-order=desc)
   - [Arch => Development](https://archlinux.org/)
-  - [Kali](https://www.kali.org/) => Sniffing and Vulnerability Analysis
+  - [Kali => Sniffing and Vulnerability Analysis](https://www.kali.org/)
 - [localtunnel](https://theboroer.github.io/localtunnel-www/)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
@@ -40,6 +40,10 @@ Built and deployed two .NET Microservices using the REST API pattern.
 - Shell
   - Bash
   - Zsh
+- [Telemetry](https://hub.docker.com/r/grafana/otel-lgtm)
+    - [Grafana](https://opentelemetry.io/)
+    - [OpenTelemetry](https://opentelemetry.io/)
+    - [Prometheus](https://prometheus.io/)
 - [Terraform](https://www.terraform.io/)
 
 ## References
