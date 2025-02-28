@@ -37,11 +37,6 @@ kubectl delete --all-namespaces validatingwebhookconfiguration ingress-nginx-adm
 # create ingress from configuration
 kubectl create -f ./ingress-service.yaml
 
-# forward ports to services in detached state
-kubectl port-forward service/platform-node-port-service 8080:8080 &
-kubectl port-forward service/mssql-loadbalancer 1433:1433 &
-kubectl port-forward service/rabbitmq-loadbalancer 15672:15672 &
-
 cd ./../configurations/ || return
 
 pwd
