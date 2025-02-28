@@ -1,0 +1,185 @@
+{
+  "name": "dotnet-run_platformsService",
+  "requests": [
+    {
+      "name": "createPlatform",
+      "url": "http://localhost:5044/api/platforms",
+      "method": "POST",
+      "params": [],
+      "headers": [
+        {
+          "enabled": true,
+          "data": [
+            "cache-control",
+            "no-cache"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "user-agent",
+            "ATAC/v0.18.1"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept",
+            "*/*"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "connection",
+            "keep-alive"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "content-type",
+            "application/json"
+          ]
+        }
+      ],
+      "body": {
+        "json": "{ \n\"name\": \"Docker\", \n\"publisher\": \"Docker.inc\", \n\"cost\": \"Free\"\n}"
+      },
+      "auth": "no_auth",
+      "scripts": {
+        "pre_request_script": null,
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true,
+        "accept_invalid_certs": false,
+        "accept_invalid_hostnames": false
+      }
+    },
+    {
+      "name": "getAllPlatforms",
+      "url": "http://localhost:5044/api/platforms",
+      "method": "GET",
+      "params": [],
+      "headers": [
+        {
+          "enabled": true,
+          "data": [
+            "cache-control",
+            "no-cache"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "user-agent",
+            "ATAC/v0.18.1"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept",
+            "*/*"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "connection",
+            "keep-alive"
+          ]
+        }
+      ],
+      "body": "no_body",
+      "auth": "no_auth",
+      "scripts": {
+        "pre_request_script": null,
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true,
+        "accept_invalid_certs": false,
+        "accept_invalid_hostnames": false
+      }
+    },
+    {
+      "name": "getPlatformById",
+      "url": "http://localhost:5044/api/platoforms/2",
+      "method": "GET",
+      "params": [],
+      "headers": [
+        {
+          "enabled": true,
+          "data": [
+            "cache-control",
+            "no-cache"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "user-agent",
+            "ATAC/v0.18.1"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept",
+            "*/*"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "accept-encoding",
+            "gzip, deflate, br"
+          ]
+        },
+        {
+          "enabled": true,
+          "data": [
+            "connection",
+            "keep-alive"
+          ]
+        }
+      ],
+      "body": "no_body",
+      "auth": "no_auth",
+      "scripts": {
+        "pre_request_script": null,
+        "post_request_script": null
+      },
+      "settings": {
+        "use_config_proxy": true,
+        "allow_redirects": true,
+        "store_received_cookies": true,
+        "pretty_print_response_content": true,
+        "accept_invalid_certs": false,
+        "accept_invalid_hostnames": false
+      }
+    }
+  ]
+}
