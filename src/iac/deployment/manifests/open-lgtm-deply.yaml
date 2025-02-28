@@ -1,0 +1,69 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lgtm-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lgtm
+  template:
+    metadata:
+      labels:
+        app: lgtm
+    spec:
+      containers:
+        - name: lgtm
+          image: grafana/otel-lgtm:latest
+          ports:
+            - containerPort: 4317
+              name: lgtm-grpc-port
+            - containerPort: 4318
+              name: lgtm-http-port
+            - containerPort: 3000
+              name: web-view-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lgtm-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: lgtm
+  ports:
+  - name: lgtm-grpc-port
+    protocol: TCP
+    port: 4317
+    targetPort: 4317
+  - name: lgtm-http-port
+    protocol: TCP
+    port: 4318
+    targetPort: 4318
+  - name: web-view-port
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lgtm-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: lgtm
+  ports:
+  - name: lgtm-grpc-port 
+    protocol: TCP
+    port: 4317
+    targetPort: 4317
+  - name: lgtm-http-port 
+    protocol: TCP
+    port: 4318
+    targetPort: 4318
+  - name: web-view-port 
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
