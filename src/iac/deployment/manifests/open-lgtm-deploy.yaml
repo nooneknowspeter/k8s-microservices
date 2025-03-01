@@ -23,6 +23,33 @@ spec:
               name: lgtm-http-port
             - containerPort: 3000
               name: web-view-port
+          readinessProbe:
+            exec:
+              command:
+                - cat
+                - /tmp/ready
+          volumeMounts:
+            - name: tempo-data
+              mountPath: /data/tempo
+            - name: grafana-data
+              mountPath: /data/grafana
+            - name: loki-data
+              mountPath: /data/loki
+            - name: loki-storage
+              mountPath: /loki
+            - name: p8s-storage
+              mountPath: /data/prometheus
+      volumes:
+        - name: tempo-data
+          emptyDir: {}
+        - name: loki-data
+          emptyDir: {}
+        - name: grafana-data
+          emptyDir: {}
+        - name: loki-storage
+          emptyDir: {}
+        - name: p8s-storage
+          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
