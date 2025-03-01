@@ -57,7 +57,7 @@ Built and deployed two .NET Microservices using the REST API pattern.
 
 ### Microservices Architecture
 
-Digram Illustrating Microservices Architecture and Communication
+Diagram Illustrating Microservices Architecture and Communication
 
 ```mermaid
 ---
