@@ -27,6 +27,9 @@ kubectl apply -f ./mssql-platform-deploy.yaml
 # kubectl apply rabbitmq configuration
 kubectl apply -f ./rabbitmq-deploy.yaml
 
+# kubectl apply opentelemetry and lgtm configuration
+kubectl apply -f ./open-lgtm-deploy.yaml
+
 # nginx ingress controller
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/cloud/deploy.yaml
 minikube addons enable ingress
