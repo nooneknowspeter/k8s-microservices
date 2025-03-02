@@ -41,9 +41,9 @@ Built and deployed two .NET Microservices using the REST API pattern.
   - Bash
   - Zsh
 - [Telemetry](https://hub.docker.com/r/grafana/otel-lgtm)
-    - [Grafana](https://opentelemetry.io/)
-    - [OpenTelemetry](https://opentelemetry.io/)
-    - [Prometheus](https://prometheus.io/)
+  - [Grafana](https://opentelemetry.io/)
+  - [OpenTelemetry](https://opentelemetry.io/)
+  - [Prometheus](https://prometheus.io/)
 - [Terraform](https://www.terraform.io/)
 
 ## References
@@ -74,7 +74,8 @@ graph LR;
         %% connections
         gateway <--> platformRestAPI
         gateway <--> commandsRestAPI
-        platformService <--HTTP--> commandsRestAPI
+        platformService --HTTP \n Async Communication--> commandsRestAPI
+        commandsService --gRPC \n Retrieve and Sync Platforms--> platformService
         platformService --Publish--> messageBus
         messageBus --Subscribe--> commandsService
 
@@ -130,22 +131,32 @@ graph TD;
             %% commands service
             subgraph commandsPod[ Pod ]
                 commandsServiceContainer( Commands Service Container)
+                commandsClusterIP( Cluster IP)
             end
 
-            commandsPod <--8080--> commandsClusterIP
-            commandsPod <--666--> commandsClusterIP
+            commandsServiceContainer <--8080--> commandsClusterIP
+            commandsServiceContainer <--666--> commandsClusterIP
 
-            commandsClusterIP( Cluster IP \n Commands Service Cluster IP )
 
             %% platforms service
             subgraph platformsPod[ Pod ]
                 platformsServiceContainer( Platforms Service Container)
+                platformsClusterIP( Cluster IP)
+
+                platformsServiceContainer <--8080--> platformsClusterIP
+                platformsServiceContainer <--666--> platformsClusterIP
             end
 
-            platformsPod <--8080--> platformsClusterIP
-            platformsPod <--666--> platformsClusterIP
+            %% rabbitmq
+            subgraph rabbitmqPod[ Pod ]
+                rabbitmqContainer( RabbitMQ Container )
+                rabbitmqClusterIP( Cluster IP )
 
-            platformsClusterIP( Cluster IP \n Platforms Service Cluster IP )
+                rabbitmqContainer <--5672--> rabbitmqClusterIP
+                rabbitmqContainer <--15672--> rabbitmqClusterIP
+            end
+
+
 
             %% nginx
             subgraph nginxPod[ Pod ]
@@ -158,27 +169,31 @@ graph TD;
 
             %% mssql server
             subgraph mssqlPod[ Pod ]
-                mssqlContainer( Microsoft SQL Server Container)
+                mssqlContainer[( MicrosoftSQL Server Container )]
+               mssqlClusterIP( Cluster IP)
+
+                mssqlContainer <--1433--> mssqlClusterIP
+                mssqlClusterIP <--> platformsClusterIP
             end
 
-            mssqlPod <--1433--> mssqlClusterIP
-            mssqlClusterIP <--> platformsClusterIP
 
-            mssqlClusterIP( Cluster IP \n Microsoft SQL Server Service Cluster IP )
 
             %% node port
-            nodePort( Node Port )
+            nodePort((Node Port ))
 
 
-            %% ingress controller
-            ingressController( Ingress Nginx Load Balancer )
+           %% ingress controller
+            ingressController((Ingress Nginx Load Balancer ))
 
-            %% connections
-            commandsServiceContainer <--8080--> nodePort
+           %% connections
+            platformsServiceContainer <--8080--> nodePort
             nginxContainer <--80--> ingressController
             nginxContainer <--8080--> platformsServiceContainer
             nginxContainer <--8080--> commandsServiceContainer
             platformsClusterIP <--Asynchronous--> commandsClusterIP
+            platformsClusterIP <--Synchronous--> commandsClusterIP
+            platformsClusterIP --5672--> rabbitmqClusterIP
+            rabbitmqClusterIP --5672--> commandsClusterIP
 
         end
     end
