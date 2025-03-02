@@ -4,3 +4,6 @@
 [submodule "CommandsService"]
 	path = src/microservices/CommandsService
 	url = https://github.com/nooneknowspeter/dotnet-commands-microservice.git
+[submodule "frontend"]
+	path = src/frontend
+	url = git@github.com:nooneknowspeter/k8s-frontend.git
