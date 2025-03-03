@@ -23,4 +23,4 @@ kubectl port-forward service/lgtm-loadbalancer 4318:4318 & # otel http
 
 # frontend
 echo -e "\n --> forwarding frontend application"
-kubectl port-forward service/
+kubectl port-forward service/frontend-loadbalancer 3600:3000 &
