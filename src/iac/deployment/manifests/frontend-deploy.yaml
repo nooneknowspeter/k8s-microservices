@@ -1,0 +1,47 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: peter6/k8s-frontend:latest
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-clusterip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - name: frontend-port
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+  - name: frontend-port
+    protocol: TCP
+    port: 3000
+    targetPort: 3000
