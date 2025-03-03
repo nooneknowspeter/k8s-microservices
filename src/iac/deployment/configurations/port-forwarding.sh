@@ -12,7 +12,7 @@ kubectl port-forward service/mssql-loadbalancer 1433:1433 &
 
 # message queues
 echo -e "\n --> forwarding rabbitmq load balancer"
-kubectl port-forward service/rabbitmq-loadbalancer 15672:15672 &
+kubectl port-forward service/rabbitmq-loadbalancer 15672:15672 & # management
 kubectl port-forward service/rabbitmq-loadbalancer 5672:5672 &
 
 # monitoring
