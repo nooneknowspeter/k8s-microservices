@@ -8,9 +8,12 @@ pwd
 minikube start
 
 # kubectl apply configurations
-# apply deployments
+# apply backend services deployments
 kubectl apply -f ./platforms-deploy.yaml
 kubectl apply -f ./commands-deploy.yaml
+
+# apply frontend deployment
+kubectl apply -f ./frontend-deploy.yaml
 
 # node port to platforms service
 kubectl apply -f ./platforms-node-port-service.yaml
