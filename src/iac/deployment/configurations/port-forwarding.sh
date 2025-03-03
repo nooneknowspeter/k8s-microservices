@@ -17,6 +17,7 @@ kubectl port-forward service/rabbitmq-loadbalancer 5672:5672 &
 
 # monitoring
 echo -e "\n --> forwarding open telemetry and lgtm load balancer"
-kubectl port-forward service/lgtm-loadbalancer 3000:3000 &
-kubectl port-forward service/lgtm-loadbalancer 4317:4317 &
-kubectl port-forward service/lgtm-loadbalancer 4318:4318 &
+kubectl port-forward service/lgtm-loadbalancer 4320:3000 & # grafana
+kubectl port-forward service/lgtm-loadbalancer 4317:4317 & # otel gRPC
+kubectl port-forward service/lgtm-loadbalancer 4318:4318 & # otel http
+
