@@ -21,3 +21,6 @@ kubectl port-forward service/lgtm-loadbalancer 4320:3000 & # grafana
 kubectl port-forward service/lgtm-loadbalancer 4317:4317 & # otel gRPC
 kubectl port-forward service/lgtm-loadbalancer 4318:4318 & # otel http
 
+# frontend
+echo -e "\n --> forwarding frontend application"
+kubectl port-forward service/
